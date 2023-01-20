@@ -1,0 +1,120 @@
+.Schedule{
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 1000px;
+    width: 100%;
+    align-items: center;
+    padding: 20px;
+}
+.month-card{
+    border:gray;
+    border-style: groove;
+    border-radius:  10px;
+    max-width: 100%;
+    text-align: center;
+    margin: 10px;
+    padding:10px;
+}
+.month-header{
+    display:block;
+    width: 100%;
+    text-align: center;
+}
+.month-contents{
+
+    max-width: 100%;
+}
+.month-links{
+    display:inline-block;
+    vertical-align: top;
+    padding:10px;
+}
+.schedule-btn{
+    width:100px;
+    height: 100px;
+}
+.Week-card{
+    border:gray;
+    border-style: groove;
+    border-radius:  10px;
+    width: 50%;
+    text-align: center;
+    margin: 10px;
+    padding:10px;
+}
+.clm-btn{
+    background-color: rgb(90, 169, 218);
+    font-weight: bolder;
+    border-style: solid;
+    border-radius: 7px;
+}
+.attendant-btn{
+    background-color: rgb(232, 195, 100);
+    font-weight: bolder;
+    border-radius: 7px;
+}
+.sunday-btn{
+    background-color: rgb(241, 241, 101);
+    font-weight: bolder;
+    border-radius: 7px;
+}
+.field-btn{
+    background-color: rgb(94, 231, 142);
+    font-weight: bolder;
+    border-radius: 7px;
+}
+.clm-btn-weeks{
+    width: 100%;
+    background-color: rgb(180, 197, 241);
+    font-weight: bolder;
+    border-style: solid;
+    border-radius: 7px;
+    padding:10px;
+    margin: 10px;
+}
+.oclm-container{
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 1000px;
+    width: 100%;
+    padding-left:75px;
+    padding-right:75px;
+}
+.oclm-header-treasure{
+    background-color: rgb(158, 158, 158);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.oclm-header-ministry{
+    background-color: rgb(224, 190, 78);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.oclm-header-christians{
+    background-color: rgb(159, 26, 26);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+.assignment-container{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    width: 100%;
+}
+.asssignment-left{
+    display: inline-block;
+    width: 50%;
+}
+.asssignment-right{
+    text-align: right;
+    display: inline-block;
+    width: 50%;
+}
+.studyNumber{
+    font-weight: bold;
+    color: gray;
+    padding-right: 15px;
+}
