@@ -224,7 +224,9 @@ class OclmSchedule extends React.Component {
             error:null,
             isLoaded : false,
             meetingParts : {
-                prayer:''
+            },
+            assignments:{
+
             }
         };
     }
@@ -247,7 +249,7 @@ class OclmSchedule extends React.Component {
         var month = today.getMonth();
         month = month +1;
         //const url = "https://wol.jw.org/en/wol/meetings/r1/lp-e/"+date.getFullYear()+"/"+weekNumber;
-        const url = "https://oclm-api.herokuapp.com"
+        const url ="https://oclm-api.herokuapp.com"; //"http://localhost:3000"  //https://oclm-api.herokuapp.com"
         const options = {
             mode:'cors',
             headers:{
@@ -256,7 +258,7 @@ class OclmSchedule extends React.Component {
             },
             method:'POST',
             body: JSON.stringify({
-                language:'english',
+                language:'tagalog',
                 month: month,
                 day: today.getDate(),
                 year: today.getFullYear()
@@ -271,22 +273,122 @@ class OclmSchedule extends React.Component {
             (result) => {
                 console.log(result);
                 var jsonResult = JSON.parse(result);
+                var assignmentResult = jsonResult.assignments;
+                var openning;
+                var gems;
+                var bibleReading;
+                var treasures;
+                var ministryParts = [];
+                var ministryPart1;
+                var ministryPart2;
+                var ministryPart3;
+                var livingParts = [];
+                var midSong;
+                var livingPart1;
+                var livingPart2;
+                var livingPart3;
+                var cbs;
+                var closingComments;
+                var closingSong;
+                var livingPart1;
+                for(var i =0; i<jsonResult.response.length; i++){
+                    switch(jsonResult.response[i].sectionName){
+                        case 'openning':
+                            console.log('openning: '+jsonResult.response[i].title);
+                            openning=jsonResult.response[i].title;
+                            break;
+                        case 'treasures':
+                            if(jsonResult.response[i].title.includes('Spiritual Gems')){
+                                gems = jsonResult.response[i].title;
+                                break;
+                            }
+                            if(jsonResult.response[i].title.includes('Bible Reading')){
+                                bibleReading = jsonResult.response[i].title;
+                                break;
+                            }
+                            treasures = jsonResult.response[i].title;
+                            break;
+                        case 'ministry':
+                            ministryParts.push(jsonResult.response[i].title);
+                            break;
+                        case 'living':
+                            livingParts.push(jsonResult.response[i].title);
+                            break;
+                        default:
+                            break;
+                    }
+                    
+                }
+                for(var i=0; i<livingParts.length;i++){
+                    switch(i){
+                        case 0:
+                            midSong = livingParts[i];
+                            break;
+                        case 1:
+                            livingPart1 = livingParts[i]
+                            break;
+                        case livingParts.length-3:
+                            cbs = livingParts[i]
+                            break;
+                        case livingParts.length-2:
+                            closingComments = livingParts[i]
+                            break;
+                        case livingParts.length-1:
+                            closingSong = livingParts[i]
+                            break;
+                    }
+                }
+                if(livingParts.length == 5)
+                    livingPart2 = livingParts[i];
+                if(livingParts.length == 6)
+                    livingPart3 = livingParts[i];
+                for(var i=0; i<ministryParts.length;i++){
+                    switch(i){
+                        case 0:
+                            ministryPart1 = ministryParts[i];
+                            console.log('ministry1: '+ministryPart1);
+                            break;
+                        case 1:
+                            ministryPart2 = ministryParts[i];
+                            break;
+                        case 2:
+                            ministryPart3 = ministryParts[i];
+                            break;
+                    }
+                }
                 this.setState({
                   isLoaded: true,
                   meetingParts: {
-                    openingPrayer: jsonResult.response[0].title,
-                    openingComments: jsonResult.response[1].title,
-                    treasures: jsonResult.response[3].title,
-                    gems: jsonResult.response[4].title,
-                    reading: jsonResult.response[9].title,
-                    studentPart2: jsonResult.response[11].title,
-                    studentPart3: jsonResult.response[12].title,
-                    studentPart4: jsonResult.response[13].title,
-                    midSong: jsonResult.response[15].title,
-                    livingPart1: jsonResult.response[16].title,
-                    livingPart2: jsonResult.response[17].title,
-                    cbs: jsonResult.response[18].title,
-                    closingComments: jsonResult.response[19].title,
+                    openingPrayer: openning,
+                    treasures:treasures,
+                    gems: gems,
+                    bibleReading: bibleReading,
+                    ministryPart1: ministryPart1,
+                    ministryPart2: ministryPart2,
+                    ministryPart3: ministryPart3,
+                    midSong: midSong,
+                    livingPart1: livingPart1,
+                    livingPart2:livingPart2,
+                    livingPart3:livingPart3,
+                    cbs: cbs,
+                    closingComments: closingComments,
+                    closingSong: closingSong
+                  },
+                  assignments: {
+                    ClosingPrayer: assignmentResult.ClosingPrayer,
+                    LivingPart2: assignmentResult.LivingPart2,
+                    Chairman: assignmentResult.Chairman,
+                    OpenningPrayer: assignmentResult.OpenningPrayer,
+                    Treasures: assignmentResult.Treasures,
+                    Gems: assignmentResult.Gems,
+                    MinistryPart3: assignmentResult.MinistryPart3,
+                    MinistryPart1: assignmentResult.MinistryPart1,
+                    CBS: assignmentResult.CBS,
+                    CBSReader:assignmentResult.CBSReader,
+                    MinistryPart2: assignmentResult.MinistryPart2,
+                    LivingPart3: assignmentResult.LivingPart3,
+                    Reading: assignmentResult.Reading,
+                    LivingPart1: assignmentResult.LivingPart1
                   }
                 });
               },
@@ -303,79 +405,80 @@ class OclmSchedule extends React.Component {
         
     }
     render(){
-        const { error, isLoaded, meetingParts } = this.state;
+        const { error, isLoaded, meetingParts, assignments } = this.state;
        
         //console.log("response: " + meetingParts.prayer);
         return(
             <div className='oclm-container'>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:00 {meetingParts.openingPrayer}</div>
-                    <div className='asssignment-right'>Panalangin: XXXXXXX</div>
+                    <div className='asssignment-left'> {meetingParts.openingPrayer}</div>
+                    <div className='asssignment-right'>Panalangin: {assignments.OpenningPrayer}</div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:05 {meetingParts.openingComments}(1)</div>
-                    <div className='asssignment-right'>Chairman: XXXXXXXX</div>
+                    <div className='asssignment-left'></div>
+                    <div className='asssignment-right'>Chairman: {assignments.Chairman}</div>
                 </div>
                 <div className='oclm-header-treasure'>
                     KAYAMANAN MULA SA SALITA NG DIYOS
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:06 {meetingParts.treasures} (10)</div>
-                    <div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.treasures}</div>
+                    <div className='asssignment-right'>{assignments.Treasures}</div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:16 {meetingParts.gems} (10)</div>
-                    <div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.gems}</div>
+                    <div className='asssignment-right'>{assignments.Gems}</div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:26 {meetingParts.reading} (4): </div>
-                    <div className='asssignment-right'><span className='studyNumber'>Aralin X</span>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.bibleReading}: </div>
+                    <div className='asssignment-right'>{assignments.Reading}</div>
                 </div>
                 <div className='oclm-header-ministry'>
                     MAGING MAHUSAY SA MINISTERYO
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:31 {meetingParts.studentPart2} (4): </div>
-                    <div className='asssignment-right'><span className='studyNumber'>Aralin X</span>Br. XXXXXXXXXXXXX</div>
-                    <div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'> {meetingParts.ministryPart1}: </div>
+                    <div className='asssignment-right'>{assignments.MinistryPart1}</div>
+                    {/*<div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>*/}
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:36 {meetingParts.studentPart3} (4): </div>
-                    <div className='asssignment-right'><span className='studyNumber'>Aralin X</span>Br. XXXXXXXXXXXXX</div>
-                    <div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.ministryPart2}: </div>
+                    <div className='asssignment-right'>{assignments.MinistryPart2}</div>
+                    {/*<div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>*/}
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:40 {meetingParts.studentPart4} (4): </div>
-                    <div className='asssignment-right'><span className='studyNumber'>Aralin X</span>Br. XXXXXXXXXXXXX</div>
-                    <div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'> {meetingParts.ministryPart3}: </div>
+                    <div className='asssignment-right'>{assignments.MinistryPart3}</div>
+                    {/*<div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>*/}
                 </div>
                 <div className='oclm-header-christians'>
                     PAMUMUHAY BILANG KRISTYANO
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:47 {meetingParts.midSong}</div>
+                    <div className='asssignment-left'>{meetingParts.midSong}</div>
                     
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:52 {meetingParts.livingPart1}</div>
-                    <div className='asssignment-right'>Br. XXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.livingPart1}</div>
+                    <div className='asssignment-right'>{assignments.LivingPart1}</div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>7:57 {meetingParts.livingPart2}</div>
-                    <div className='asssignment-right'>Br. XXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.livingPart2}</div>
+                    <div className='asssignment-right'>{assignments.LivingPart2}</div>
+                </div>
+                
+                <div className='assignment-container'>
+                    <div className='asssignment-left'>{meetingParts.cbs} (30)</div>
+                    <div className='asssignment-right'>{assignments.CBS}</div>
+                    <div className='asssignment-left'></div><div className='asssignment-right'><span className='studyNumber'>Tagabasa</span>{assignments.CBSReader}</div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>8:07 {meetingParts.cbs} (30)</div>
-                    <div className='asssignment-right'>Br. XXXXXXXX</div>
-                    <div className='asssignment-left'></div><div className='asssignment-right'><span className='studyNumber'>Tagabasa</span>Br. XXXXXXXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.concludingComments} (3)</div>
+                    <div className='asssignment-right'>{assignments.Chairman}</div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'>8:37 {meetingParts.closingComments} (3)</div>
-                    <div className='asssignment-right'>Br. XXXXXXXX</div>
-                </div>
-                <div className='assignment-container'>
-                    <div className='asssignment-left'>8:40 Awit XXX : XXXXXXXXXXX</div>
-                    <div className='asssignment-right'><span className='studyNumber'>Panalangin</span>Br. XXXXXXXX</div>
+                    <div className='asssignment-left'>{meetingParts.closingSong}</div>
+                    <div className='asssignment-right'><span className='studyNumber'>Panalangin</span>{assignments.ClosingPrayer}</div>
                 </div>
             </div>
         );
