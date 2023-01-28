@@ -298,11 +298,11 @@ class OclmSchedule extends React.Component {
                             openning=jsonResult.response[i].title;
                             break;
                         case 'treasures':
-                            if(jsonResult.response[i].title.includes('Spiritual Gems')){
+                            if(jsonResult.response[i].title.includes('Espirituwal na Hiyas')){
                                 gems = jsonResult.response[i].title;
                                 break;
                             }
-                            if(jsonResult.response[i].title.includes('Bible Reading')){
+                            if(jsonResult.response[i].title.includes('Pagbabasa ng Bibliya')){
                                 bibleReading = jsonResult.response[i].title;
                                 break;
                             }
