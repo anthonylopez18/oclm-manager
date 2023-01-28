@@ -254,7 +254,7 @@ class OclmSchedule extends React.Component {
             mode:'cors',
             headers:{
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin':'http://localhost:3000'
+                'Access-Control-Allow-Origin': 'https://oclm-manager-app.herokuapp.com'  //'http://localhost:3000'
             },
             method:'POST',
             body: JSON.stringify({
