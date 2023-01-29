@@ -57,8 +57,11 @@ function getMonth(offset){
     month = month + offset;
     console.log('In getMonth month: '+month + ' offset = '+offset + ' d: '+ d.getMonth());
     d.setMonth(month > 11 ? month - 12 : month);
+
+    month = month > 11 ? month - 12 : month;
     console.log(' d.setMonth: '+ d.getMonth());
-    return (d.getMonth());
+    //return (d.getMonth());
+    return (month);
 }
 function getMonthAndYear(offset =0){
     var d= new Date(Date.now());
