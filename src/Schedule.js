@@ -108,7 +108,7 @@ function getMonthAndYear(offset =0){
 function getStartofWeek(month, offset=0){
     var d= new Date(Date.now());
     d.setMonth(month);
-    d.setDate(d.getDate()+offset);
+    d.setDate(7+offset);
     var day = d.getDay();
     var diff= d.getDate() - day + (day == 0 ? -6:1);
     var startDate = new Date(d.setDate(diff));
