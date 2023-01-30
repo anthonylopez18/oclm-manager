@@ -31,7 +31,7 @@ function getStartofWeek(month, offset=0){
     var diff= d.getDate() - day + (day == 0 ? -6:1);
     console.log('diff: '+ diff);
     var startDate = new Date(d.setDate(diff));
-    d.setMonth(month);
+    //d.setMonth(month);
     console.log('startDate: '+ startDate.toDateString());
     return startDate;
 }
