@@ -59,7 +59,7 @@ function getMonth(offset){
     d.setMonth(month > 11 ? month - 12 : month);
 
     month = month > 11 ? month - 12 : month;
-    console.log(' d.setMonth: '+ d.getMonth());
+    console.log(' d.setMonth: '+ month);
     //return (d.getMonth());
     return (month);
 }
