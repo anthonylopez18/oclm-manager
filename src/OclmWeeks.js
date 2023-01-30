@@ -25,6 +25,8 @@ function OclmWeeks(props){
 function getStartofWeek(month, offset=0){
     console.log('In getStartofWeek: month: '+ month);
     var d= new Date(Date.now());
+    d.setMonth(month);
+    console.log('dateUsed: '+ d.toDateString());
     d.setDate(7+offset);
     console.log('setdate: '+ d.getDate());
     var day = d.getDay();
@@ -32,7 +34,7 @@ function getStartofWeek(month, offset=0){
     console.log('diff: '+ diff);
     console.log('d: '+ d.toDateString());
     var startDate = new Date(d.setDate(diff));
-    //d.setMonth(month);
+    
     console.log('d - diff: '+ d.toDateString());
     console.log('startDate: '+ startDate.toDateString());
     return startDate;
