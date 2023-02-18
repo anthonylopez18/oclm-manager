@@ -1,6 +1,15 @@
-import './UpdateSchedule.css';
+//import './UpdateSchedule.css';
 import React, { useState } from 'react';
 import { extend } from 'jquery';
+
+const root = ReactDOM.createRoot(document.getElementById('UpdateSchedule'));
+root.render(
+  <React.StrictMode>
+    <Navigation />
+    <UpdateSchedule />
+   
+  </React.StrictMode>
+);
 
 class UpdateSchedule extends React.Component{
     constructor(props){
