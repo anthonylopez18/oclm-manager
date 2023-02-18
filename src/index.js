@@ -5,6 +5,7 @@ import Navigation from './Navigation';
 import Schedule from './Schedule.js';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UpdateSchedule from './UpdateSchedule.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
