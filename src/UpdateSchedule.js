@@ -1,5 +1,11 @@
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import Navigation from './Navigation';
+import 'bootstrap/dist/css/bootstrap.min.css';
 //import './UpdateSchedule.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { extend } from 'jquery';
 
 const root = ReactDOM.createRoot(document.getElementById('UpdateSchedule'));
@@ -37,9 +43,9 @@ class UpdateSchedule extends React.Component{
             method:'POST',
             body: JSON.stringify({
                 language:'tagalog',
-                month: month,
-                day: today.getDate(),
-                year: today.getFullYear()
+                month: 1,
+                day: 1,
+                year: 2023
             })
         };
         this.setState({isLoading:true});
@@ -180,6 +186,8 @@ class UpdateSchedule extends React.Component{
         );
     }
     render(){
+        const { error, isLoading, meetingParts, assignments } = this.state;
+       
         return (
             <>
             <div className='assignment-container'>
