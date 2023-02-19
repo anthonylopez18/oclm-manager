@@ -6,16 +6,22 @@ import Schedule from './Schedule.js';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UpdateSchedule from './UpdateSchedule.js';
-
+import { BrowserRouter as Router, Routes, Route}
+    from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Navigation />
-    <Schedule />
-   
-  </React.StrictMode>
+    <Router>
+        <Navigation />
+        <Routes>
+          <Route exact path='/' element={<Schedule />} />
+          <Route path='/update' element={<UpdateSchedule />} />
+        </Routes>
+      </Router>
+    </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
