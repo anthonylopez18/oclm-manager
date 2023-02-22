@@ -183,8 +183,8 @@ class UpdateSchedule extends React.Component{
         return (
             <>
             <div className='assignment-container'>
-                    <div className='asssignment-left'> <input type='text' value= {meetingParts.openingPrayer} /></div>
-                    <div className='asssignment-right'>Panalangin: <input type='text' value= {assignments.OpenningPrayer} /></div>
+                    <div className='asssignment-left'> <input type='text' value= {meetingParts.openingPrayer} ></input></div>
+                    <div className='asssignment-right'>Panalangin: <input type='text' value= {assignments.OpenningPrayer}></input></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'></div>
