@@ -163,7 +163,7 @@ class OclmSchedule extends React.Component {
                     closingSong: closingSong
                   },
                   assignments: {
-                    ClosingPrayer: assignmentResult.ClosingPrayer ?? '',
+                    ClosingPrayer: assignmentResult.ClosingPrayer,
                     LivingPart2: assignmentResult.LivingPart2,
                     Chairman: assignmentResult.Chairman,
                     OpenningPrayer: assignmentResult.OpenningPrayer,
