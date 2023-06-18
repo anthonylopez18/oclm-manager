@@ -385,9 +385,11 @@ class UpdateSchedule extends React.Component{
                     <div className='asssignment-right'><input  name='Treasures' type='text' value= {assignments.Treasures} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
-                    <div className='asssignment-left'><input  name='Gems' type='text' value= {meetingParts.Gems} onChange={this.handleChange} /></div>
+                    <div className='asssignment-left'>{meetingParts.Gems}</div>
+                    <div className='asssignment-left'><input  name='Gems' type='text' value= {assignments.Gems} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
+                    <div className='asssignment-left'>{meetingParts.bibleReading}</div>
                     <div className='asssignment-right'><input  name='Reading' type='text' value={assignments.Reading} onChange={this.handleChange} /></div>
                 </div>
                 <div className='oclm-header-ministry'>
