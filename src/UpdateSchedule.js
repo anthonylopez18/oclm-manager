@@ -38,9 +38,7 @@ class UpdateSchedule extends React.Component{
         event.preventDefault();
     }
     
-    
-    componentDidMount(){
-        
+    getSchedule(day, month, year){
         const url ="https://oclm-api.herokuapp.com"; 
         const options = {
             mode:'cors',
@@ -51,9 +49,9 @@ class UpdateSchedule extends React.Component{
             method:'POST',
             body: JSON.stringify({
                 language:'tagalog',
-                month: 3,
-                day: 1,
-                year: 2023
+                month: day,
+                day: month,
+                year: year
             })
         };
         this.setState({isLoading:true});
@@ -192,6 +190,11 @@ class UpdateSchedule extends React.Component{
                 });
               }
         );
+    }
+    
+    componentDidMount(){
+        var thisDate = new Date();
+        this.getSchedule(thisDate.getDate(), thisDate.getMonth()+1, thisDate.getFullYear());
     }
     
     render(){
