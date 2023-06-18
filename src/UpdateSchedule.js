@@ -49,8 +49,8 @@ class UpdateSchedule extends React.Component{
             method:'POST',
             body: JSON.stringify({
                 language:'tagalog',
-                month: day,
-                day: month,
+                month: month,
+                day: day,
                 year: year
             })
         };
