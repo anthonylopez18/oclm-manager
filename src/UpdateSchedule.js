@@ -63,10 +63,8 @@ class UpdateSchedule extends React.Component{
         var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         console.log('diff: ' + diffDays);
         var weekNumber = Number.parseFloat((diffDays/7)+1).toFixed(0);
-        var assignObj = { ... this.state.assignments};
-        this.setState((prevData)=>({  assignments : { ...assignObj,         
-            weekNumber : weekNumber
-        }}));
+        
+        var assignObj = this.state.assignments;
         //this.setState({weekNumber:weekNumber});
 
         console.log('assignment requestBody: ' + JSON.stringify(this.state.assignments));
@@ -76,10 +74,26 @@ class UpdateSchedule extends React.Component{
             mode:'cors',
             headers:{
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://oclm-manager-app.herokuapp.com' 
+                'Access-Control-Allow-Origin': 'https://oclm-manager-app.herokuapp.com/update' 
             },
             method:'POST',
-            body: JSON.stringify(this.state.assignments)
+            body: JSON.stringify({
+                ClosingPrayer: assignObj.ClosingPrayer,
+                LivingPart2: assignObj.LivingPart2,
+                Chairman: assignObj.Chairman,
+                OpenningPrayer: assignObj.OpenningPrayer,
+                Treasures: assignObj.Treasures,
+                Gems: assignObj.Gems,
+                MinistryPart3: assignObj.MinistryPart3,
+                MinistryPart1: assignObj.MinistryPart1,
+                CBS: assignObj.CBS,
+                CBSReader:assignObj.CBSReader,
+                MinistryPart2: assignObj.MinistryPart2,
+                LivingPart3: assignObj.LivingPart3,
+                Reading: assignObj.Reading,
+                LivingPart1: assignObj.LivingPart1,
+                weekNumber: weekNumber
+            })
         };
         this.setState({isLoading:true});
         fetch(url,options)
