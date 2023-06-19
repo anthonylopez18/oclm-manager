@@ -43,8 +43,8 @@ class UpdateSchedule extends React.Component{
     
     handleSubmit(event) {        
 
-        const date = new Date();
-        console.log('date: ' + date.getDate());
+        const date = new Date(this.props.params.year, this.props.params.month, this.props.params.dd);
+        console.log('date: ' + date.getDate() + '/ ' + date.getMonth());
         this.updateSchedule(date.getDate(), date.getMonth()+1, date.getFullYear());
         event.preventDefault();
     }
