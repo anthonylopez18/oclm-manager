@@ -414,7 +414,7 @@ class UpdateSchedule extends React.Component{
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.gems}</div>
-                    <div className='asssignment-left'><input  name='Gems' type='text'defaultValue= {assignments.Gems} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='Gems' type='text'defaultValue= {assignments.Gems} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.bibleReading}</div>
