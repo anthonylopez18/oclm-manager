@@ -51,7 +51,7 @@ class UpdateSchedule extends React.Component{
     updateSchedule(day, month, year){
         var date = new Date();
         var beginningDate = new Date(date.getFullYear(), 0,1);
-        var reqDate = new Date(year, month-1, day);
+        var reqDate = new Date(year, month, day);
         
         var diffTime = Math.abs(reqDate - beginningDate);
         var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
