@@ -16,7 +16,7 @@ root.render(
         <Navigation />
         <Routes>
           <Route exact path='/' element={<Schedule />} />
-          <Route path='/update' element={<UpdateSchedule />} />
+          <Route path='/update/:year/:month/:dd' element={<UpdateSchedule  />} />
         </Routes>
       </Router>
     </React.StrictMode>
