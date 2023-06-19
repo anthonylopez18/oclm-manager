@@ -29,10 +29,10 @@ class UpdateSchedule extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(event) {
-        var name = event.target.name;
-        this.setState({
-            [name] : event.target.value
-        });
+        const {name, value} = event.target;
+        this.setState((prevData)=>({... prevData, 
+            [name] : value
+        }));
     }
     handleChangeChairman(event) {
 
