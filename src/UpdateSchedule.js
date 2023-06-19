@@ -48,7 +48,7 @@ class UpdateSchedule extends React.Component{
     }
     
     handleSubmit(event) {
-        alert('A name was submitted: ' + JSON.stringify(this.state));
+        alert('A name was submitted: ' + JSON.stringify(this.state.assignments));
         event.preventDefault();
     }
     updateSchedule(day, month, year){
