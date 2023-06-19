@@ -30,11 +30,14 @@ class UpdateSchedule extends React.Component{
     }
     handleChange(event) {
         const {name, value} = event.target;
-        this.setState((prevData)=>({
-            assignments :{
-                [name] : value
-            }
-        }));
+        // this.assignments.setState((prevData)=>({
+        //     ...prevData,
+        //     [name] : value
+        // }));
+        var assignObj = { ... this.state.assignments};
+        this.setState((prevData)=>({  assignments : { ...assignObj,         
+            [name] : value
+        }}));
     }
     handleChangeChairman(event) {
 
@@ -45,7 +48,7 @@ class UpdateSchedule extends React.Component{
     }
     
     handleSubmit(event) {
-        alert('A name was submitted: ' + JSON.stringify(this.state.assignments));
+        alert('A name was submitted: ' + JSON.stringify(this.state));
         event.preventDefault();
     }
     updateSchedule(day, month, year){
