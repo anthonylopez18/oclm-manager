@@ -6,7 +6,12 @@ import Navigation from './Navigation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import './UpdateSchedule.css';
 import { useState } from 'react';
-import { extend } from 'jquery';
+import { extend, param } from 'jquery';
+import { useParams } from "react-router-dom";
+
+function withParams(Component) {
+  return props => <Component {...props} params={useParams()} />;
+}
 
 
 class UpdateSchedule extends React.Component{
@@ -22,10 +27,6 @@ class UpdateSchedule extends React.Component{
             }
         };
         this.handleChange = this.handleChange.bind(this);
-
-        this.handleChangeChairman = this.handleChangeChairman.bind(this);
-        this.handleChangePrayer = this.handleChangePrayer.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange(event) {
@@ -38,13 +39,6 @@ class UpdateSchedule extends React.Component{
         this.setState((prevData)=>({  assignments : { ...assignObj,         
             [name] : value
         }}));
-    }
-    handleChangeChairman(event) {
-
-       // this.setState(assignments.Chairman = event.target.value);
-    }
-    handleChangePrayer(event) {
-        this.setState({assignments:{ OpenningPrayer: event.target.value}});
     }
     
     handleSubmit(event) {        
@@ -387,8 +381,10 @@ class UpdateSchedule extends React.Component{
     }
     
     componentDidMount(){
-        var thisDate = new Date();
-        this.getSchedule(thisDate.getDate(), thisDate.getMonth()+1, thisDate.getFullYear());
+        
+        console.log('url params: ' + JSON.stringify(this.props.params));
+        var thisDate = this.props.params;
+        this.getSchedule(thisDate.dd, thisDate.month, thisDate.year);
     }
     
     render(){
@@ -475,4 +471,4 @@ class UpdateSchedule extends React.Component{
     }
 }
 
-export default UpdateSchedule;
+export default withParams(UpdateSchedule);
