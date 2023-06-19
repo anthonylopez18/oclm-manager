@@ -47,8 +47,8 @@ class UpdateSchedule extends React.Component{
         this.setState({assignments:{ OpenningPrayer: event.target.value}});
     }
     
-    handleSubmit(event) {
-        alert('A name was submitted: ' + JSON.stringify(this.state.assignments));
+    handleSubmit(event) {        
+        this.updateSchedule(Date.getDate(),Date.getMonth()+1, Date.getFullYear());
         event.preventDefault();
     }
     updateSchedule(day, month, year){
@@ -60,7 +60,13 @@ class UpdateSchedule extends React.Component{
         var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         console.log('diff: ' + diffDays);
         var weekNumber = Number.parseFloat((diffDays/7)+1).toFixed(0);
-        this.setState({weekNumber:weekNumber});
+        var assignObj = { ... this.state.assignments};
+        this.setState((prevData)=>({  assignments : { ...assignObj,         
+            weekNumber : weekNumber
+        }}));
+        //this.setState({weekNumber:weekNumber});
+
+        console.log('assignment requestBody: ' + JSON.stringify(this.state.assignments));
 
         const url ="https://oclm-api.herokuapp.com/assignments"; 
         const options = {
@@ -70,7 +76,7 @@ class UpdateSchedule extends React.Component{
                 'Access-Control-Allow-Origin': 'https://oclm-manager-app.herokuapp.com' 
             },
             method:'POST',
-            body: JSON.stringify(this.state)
+            body: JSON.stringify(this.state.assignments)
         };
         this.setState({isLoading:true});
         fetch(url,options)
