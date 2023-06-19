@@ -371,43 +371,43 @@ class UpdateSchedule extends React.Component{
             <form id='updateForm'>
                 <div className='assignment-container'>
                     <div className='asssignment-left'> {meetingParts.openingPrayer}</div>
-                    <div className='asssignment-right'>Panalangin: <input name='OpenningPrayer' type='text' value= {assignments.OpenningPrayer} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'>Panalangin: <input name='OpenningPrayer' type='text' defaultValue= {assignments.OpenningPrayer} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'></div>
-                    <div className='asssignment-right'>Chairman: <input  name='Chairman' type='text' value= {assignments.Chairman} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'>Chairman: <input  name='Chairman' type='text' defaultValue= {assignments.Chairman} onChange={this.handleChange} /></div>
                 </div>
                 <div className='oclm-header-treasure'>
                     KAYAMANAN MULA SA SALITA NG DIYOS
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.treasures}</div>
-                    <div className='asssignment-right'><input  name='Treasures' type='text' value= {assignments.Treasures} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='Treasures' type='text'defaultValue= {assignments.Treasures} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.gems}</div>
-                    <div className='asssignment-left'><input  name='Gems' type='text' value= {assignments.Gems} onChange={this.handleChange} /></div>
+                    <div className='asssignment-left'><input  name='Gems' type='text'defaultValue= {assignments.Gems} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.bibleReading}</div>
-                    <div className='asssignment-right'><input  name='Reading' type='text' value={assignments.Reading} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='Reading' type='text'defaultValue={assignments.Reading} onChange={this.handleChange} /></div>
                 </div>
                 <div className='oclm-header-ministry'>
                     MAGING MAHUSAY SA MINISTERYO
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'> {meetingParts.ministryPart1}: </div>
-                    <div className='asssignment-right'><input  name='MinistryPart1' type='text' value={assignments.MinistryPart1} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='MinistryPart1' type='text'defaultValue={assignments.MinistryPart1} onChange={this.handleChange} /></div>
                     {/*<div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>*/}
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.ministryPart2}: </div>
-                    <div className='asssignment-right'><input  name='MinistryPart2' type='text' value={assignments.MinistryPart2} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='MinistryPart2' type='text'defaultValue={assignments.MinistryPart2} onChange={this.handleChange} /></div>
                     {/*<div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>*/}
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'> {meetingParts.ministryPart3}: </div>
-                    <div className='asssignment-right'><input  name='MinistryPart3' type='text' value={assignments.MinistryPart3} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='MinistryPart3' type='text'defaultValue={assignments.MinistryPart3} onChange={this.handleChange} /></div>
                     {/*<div className='asssignment-left'></div><div className='asssignment-right'>Br. XXXXXXXXXXXXX</div>*/}
                 </div>
                 <div className='oclm-header-christians'>
@@ -419,17 +419,17 @@ class UpdateSchedule extends React.Component{
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.livingPart1}</div>
-                    <div className='asssignment-right'><input  name='LivingPart1' type='text' value={assignments.LivingPart1} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='LivingPart1' type='text'defaultValue={assignments.LivingPart1} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.livingPart2}</div>
-                    <div className='asssignment-right'><input  name='LivingPart2' type='text' value={assignments.LivingPart2} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><input  name='LivingPart2' type='text'defaultValue={assignments.LivingPart2} onChange={this.handleChange} /></div>
                 </div>
                 
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.cbs} (30)</div>
                     <div className='asssignment-right'>{assignments.CBS}</div>
-                    <div className='asssignment-left'></div><div className='asssignment-right'><span className='studyNumber'>Tagabasa</span><input  name='LivingPart2' type='text' value={assignments.CBSReader} onChange={this.handleChange} /></div>
+                    <div className='asssignment-left'></div><div className='asssignment-right'><span className='studyNumber'>Tagabasa</span><input  name='LivingPart2' type='text'defaultValue={assignments.CBSReader} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.concludingComments} (3)</div>
@@ -437,7 +437,7 @@ class UpdateSchedule extends React.Component{
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.closingSong}</div>
-                    <div className='asssignment-right'><span className='studyNumber'>Panalangin</span><input  name='ClosingPrayer' type='text' value={assignments.ClosingPrayer} onChange={this.handleChange} /></div>
+                    <div className='asssignment-right'><span className='studyNumber'>Panalangin</span><input  name='ClosingPrayer' type='text'defaultValue={assignments.ClosingPrayer} onChange={this.handleChange} /></div>
                 </div>
                 <div class='col-12 p-4'>
                     <button class='btn btn-primary btn-lg col-6' type='button'  onClick={this.handleSubmit} >UPDATE</button>    
