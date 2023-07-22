@@ -31,14 +31,14 @@ class UpdateSchedule extends React.Component{
     }
     handleChange(event) {
         const {name, value} = event.target;
-        this.assignments.setState((prevData)=>({
-            ...prevData,
-            [name] : value
-        }));
-        // var assignObj = { ... this.state.assignments};
-        // this.setState((prevData)=>({  assignments : { ...assignObj,         
+        // this.assignments.setState((prevData)=>({
+        //     ...prevData,
         //     [name] : value
-        // }}));
+        // }));
+        var assignObj = { ... this.state.assignments};
+        this.setState((prevData)=>({  assignments : { ...assignObj,         
+            [name] : value
+        }}));
     }
     
     handleSubmit(event) {        
