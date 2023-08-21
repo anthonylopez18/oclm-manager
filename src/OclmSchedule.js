@@ -36,7 +36,7 @@ class OclmSchedule extends React.Component {
         var month = today.getMonth();
         month = month +1;
         //const url = "https://wol.jw.org/en/wol/meetings/r1/lp-e/"+date.getFullYear()+"/"+weekNumber;
-        const url ="https://oclm-api.herokuapp.com"; //"http://localhost:3000"  //https://oclm-api.herokuapp.com"
+        const url ="https://master.d53xntq70mux1.amplifyapp.com"; //"http://localhost:3000"  //https://master.d53xntq70mux1.amplifyapp.com"
         const options = {
             mode:'cors',
             headers:{

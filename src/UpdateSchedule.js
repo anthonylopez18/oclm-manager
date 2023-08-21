@@ -63,7 +63,7 @@ class UpdateSchedule extends React.Component{
 
         console.log('assignment requestBody: ' + JSON.stringify(this.state.assignments));
 
-        const url ="https://oclm-api.herokuapp.com/assignments"; 
+        const url ="https://master.d53xntq70mux1.amplifyapp.com/assignments"; 
         const options = {
             mode:'cors',
             headers:{
@@ -233,7 +233,7 @@ class UpdateSchedule extends React.Component{
             day: day,
             year: year
         }));
-        const url ="https://oclm-api.herokuapp.com"; 
+        const url ="https://master.d53xntq70mux1.amplifyapp.com"; 
         const options = {
             mode:'cors',
             headers:{
