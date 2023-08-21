@@ -227,6 +227,12 @@ class UpdateSchedule extends React.Component{
         );
     }
     getSchedule(day, month, year){
+        console.log('request body: ' + JSON.stringify({
+            language:'tagalog',
+            month: month,
+            day: day,
+            year: year
+        }));
         const url ="https://oclm-api.herokuapp.com"; 
         const options = {
             mode:'cors',
