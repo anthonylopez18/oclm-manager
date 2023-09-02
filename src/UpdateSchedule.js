@@ -63,12 +63,12 @@ class UpdateSchedule extends React.Component{
 
         console.log('assignment requestBody: ' + JSON.stringify(this.state.assignments));
 
-        const url ="https://master.d53xntq70mux1.amplifyapp.com/assignments"; 
+        const url ="https://oclm-api.onrender.com"; 
         const options = {
             mode:'cors',
             headers:{
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://oclm-manager-app.herokuapp.com/update' 
+                'Access-Control-Allow-Origin': 'https://master.d3ldsmi1fd1rti.amplifyapp.com/' 
             },
             method:'POST',
             body: JSON.stringify({
@@ -233,12 +233,12 @@ class UpdateSchedule extends React.Component{
             day: day,
             year: year
         }));
-        const url ="https://master.d53xntq70mux1.amplifyapp.com"; 
+        const url ="https://oclm-api.onrender.com"; 
         const options = {
             mode:'cors',
             headers:{
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://oclm-manager-app.herokuapp.com' 
+                'Access-Control-Allow-Origin': 'https://master.d3ldsmi1fd1rti.amplifyapp.com' 
             },
             method:'POST',
             body: JSON.stringify({
