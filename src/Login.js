@@ -32,9 +32,9 @@ function Login() {
         .then(
             (response) => {
                 console.log(response.status);
-                if(response.status === 200)
+                if(response.ok == 200)
                     alert('CORRECT');
-                if(response.statust===401){
+                if(response.status== 401){
                     alert('FAILED');
                 }
               },
