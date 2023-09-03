@@ -28,13 +28,13 @@ function Login() {
         };
         //this.setState({isLoading:true});
         fetch(url,options)
-        .then(res => res.text())
+        //.then(res => res.text())
         .then(
             (result) => {
                 console.log(result.status);
-                if(result.status == 200)
+                if(result.status === 200)
                     alert('CORRECT');
-                else{
+                if(result===401){
                     alert('FAILED');
                 }
               },
