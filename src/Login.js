@@ -34,7 +34,7 @@ function Login() {
                 console.log(result.status);
                 if(result.status === 200)
                     alert('CORRECT');
-                if(result===401){
+                if(resul.statust===401){
                     alert('FAILED');
                 }
               },
