@@ -2,6 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
+import Schedule from './Schedule.js';
 
 
 function Login() {
@@ -35,8 +36,8 @@ function Login() {
         .then(
             (response) => {
                 console.log(response.status);
-                if(response.ok == 200){
-                    navigate('/schedule');
+                if(response.status == 200){
+                    renderSchedule();
                 }
                 if(response.status== 401){
                     alert("INCORRECT");
@@ -51,6 +52,10 @@ function Login() {
                 });
               }
         );
+    }
+    const renderSchedule = ()=> {
+        console.log('navigate...');
+        navigate('/schedule');
     }
 
   return (
