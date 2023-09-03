@@ -30,11 +30,11 @@ function Login() {
         fetch(url,options)
         //.then(res => res.text())
         .then(
-            (result) => {
-                console.log(result.status);
-                if(result.status === 200)
+            (response) => {
+                console.log(response.status);
+                if(response.status === 200)
                     alert('CORRECT');
-                if(result.statust===401){
+                if(response.statust===401){
                     alert('FAILED');
                 }
               },
