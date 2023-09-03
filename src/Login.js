@@ -31,7 +31,7 @@ function Login() {
         .then(res => res.text())
         .then(
             (result) => {
-                console.log(result);
+                console.log(result.status);
                 if(result.status == 200)
                     alert('CORRECT');
                 else{
