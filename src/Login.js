@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import React from 'react';
 import './Login.css';
+import { useNavigate } from "react-router-dom";
+
 
 function Login() {
+    const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
@@ -32,10 +35,11 @@ function Login() {
         .then(
             (response) => {
                 console.log(response.status);
-                if(response.ok == 200)
-                    alert('CORRECT');
+                if(response.ok == 200){
+                    navigate('/schedule');
+                }
                 if(response.status== 401){
-                    alert('FAILED');
+                    alert("INCORRECT");
                 }
               },
               // Note: it's important to handle errors here
