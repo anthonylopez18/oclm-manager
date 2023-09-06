@@ -16,15 +16,17 @@ class OclmSchedule extends React.Component {
             assignments:{
             }
         };
+        
     }
-        componentDidMount(){
+    
+    componentDidMount(){
         let dateToday = Date.now();
         //let dateToday = this.props.weekAsDate;
         var date = new Date(dateToday);
         console.log('year: ' + date.getFullYear());
         var beginningDate = new Date(date.getFullYear(), 0,1);
         //var today = new Date(Date.now());
-        var today = this.props.weekAsDate;
+        var today = new Date(this.props.weekAsDate);
         console.log('weekAsDate: ' + today.toDateString());
         
         var diff = today - beginningDate;
@@ -78,7 +80,6 @@ class OclmSchedule extends React.Component {
                 var cbs;
                 var closingComments;
                 var closingSong;
-                var livingPart1;
                 for(var i =0; i<jsonResult.response.length; i++){
                     switch(jsonResult.response[i].sectionName){
                         case 'openning':
@@ -115,6 +116,12 @@ class OclmSchedule extends React.Component {
                         case 1:
                             livingPart1 = livingParts[i]
                             break;
+                        case 2:
+                            if(livingParts.length >=5)
+                                livingPart2 = livingParts[i];
+                        case 3:
+                            if(livingParts.length >5)
+                                livingPart3 = livingParts[i];
                         case livingParts.length-3:
                             cbs = livingParts[i]
                             break;
@@ -193,8 +200,17 @@ class OclmSchedule extends React.Component {
         
     }
     render(){
+        
         const { error, isLoading, meetingParts, assignments } = this.state;
-       
+        let d = new Date();
+        var dyear = d.toLocaleString("default", { year: "numeric" });
+        var dmonth = d.toLocaleString("default", { month: "2-digit" });
+        var dday = d.toLocaleString("default", { day: "2-digit" });
+
+        var weekStart = new Date();
+        weekStart.setDate(d.getDate() - d.getDay()+1);
+        var weekEnd =new Date();
+        weekEnd.setDate(d.getDate()+6);
 
         //console.log("response: " + meetingParts.prayer);
         return(
@@ -208,7 +224,8 @@ class OclmSchedule extends React.Component {
                 : 
                 <></>}
                 </div>
-                
+                <div>Goto Date: <input id='gotoDate' type='date' defaultValue={dyear+'-'+dmonth+'-'+dday}></input><button className='btn btn-primary' >Go</button></div>
+                <div className='schedule-header'><h2>Week of {weekStart.toLocaleDateString()} to {weekEnd.toLocaleDateString()}</h2></div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'> {meetingParts.openingPrayer}</div>
                     <div className='asssignment-right'>Panalangin: {assignments.OpenningPrayer}</div>
@@ -283,5 +300,6 @@ class OclmSchedule extends React.Component {
         );
     }    
 }
+
 
 export default OclmSchedule;

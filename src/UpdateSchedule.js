@@ -45,13 +45,13 @@ class UpdateSchedule extends React.Component{
 
         const date = new Date(this.props.params.year, this.props.params.month, this.props.params.dd);
         console.log('date: ' + date.getDate() + '/ ' + date.getMonth());
-        this.updateSchedule(date.getDate(), date.getMonth()+1, date.getFullYear());
+        this.updateSchedule(date.getDate(), date.getMonth(), date.getFullYear());
         event.preventDefault();
     }
     updateSchedule(day, month, year){
         var date = new Date();
         var beginningDate = new Date(date.getFullYear(), 0,1);
-        var reqDate = new Date(year, month, day);
+        var reqDate = new Date(year, month-1, day);
         
         var diffTime = Math.abs(reqDate - beginningDate);
         var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -59,11 +59,12 @@ class UpdateSchedule extends React.Component{
         var weekNumber = Number.parseFloat((diffDays/7)+1).toFixed(0);
         
         var assignObj = this.state.assignments;
-        //this.setState({weekNumber:weekNumber});
+        //assignObj.push({weekNumber:weekNumber});
+        //this.assignments.setState({weekNumber:weekNumber});
 
         console.log('assignment requestBody: ' + JSON.stringify(this.state.assignments));
 
-        const url ="https://oclm-api.onrender.com"; 
+        const url ="https://oclm-api.onrender.com/assignments"; 
         const options = {
             mode:'cors',
             headers:{
@@ -89,6 +90,23 @@ class UpdateSchedule extends React.Component{
                 weekNumber: weekNumber
             })
         };
+        console.log(JSON.stringify({
+            ClosingPrayer: assignObj.ClosingPrayer,
+            LivingPart2: assignObj.LivingPart2,
+            Chairman: assignObj.Chairman,
+            OpenningPrayer: assignObj.OpenningPrayer,
+            Treasures: assignObj.Treasures,
+            Gems: assignObj.Gems,
+            MinistryPart3: assignObj.MinistryPart3,
+            MinistryPart1: assignObj.MinistryPart1,
+            CBS: assignObj.CBS,
+            CBSReader:assignObj.CBSReader,
+            MinistryPart2: assignObj.MinistryPart2,
+            LivingPart3: assignObj.LivingPart3,
+            Reading: assignObj.Reading,
+            LivingPart1: assignObj.LivingPart1,
+            weekNumber: weekNumber
+        }));
         this.setState({isLoading:true});
         fetch(url,options)
         .then(res => res.text())
@@ -459,7 +477,7 @@ class UpdateSchedule extends React.Component{
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.cbs} (30)</div>
                     <div className='asssignment-right'>{assignments.CBS}</div>
-                    <div className='asssignment-left'></div><div className='asssignment-right'><span className='studyNumber'>Tagabasa</span><input  name='LivingPart2' type='text'defaultValue={assignments.CBSReader} onChange={this.handleChange} /></div>
+                    <div className='asssignment-left'></div><div className='asssignment-right'><span className='studyNumber'>Tagabasa</span><input  name='CBSReader' type='text'defaultValue={assignments.CBSReader} onChange={this.handleChange} /></div>
                 </div>
                 <div className='assignment-container'>
                     <div className='asssignment-left'>{meetingParts.concludingComments} (3)</div>
@@ -470,7 +488,7 @@ class UpdateSchedule extends React.Component{
                     <div className='asssignment-right'><span className='studyNumber'>Panalangin</span><input  name='ClosingPrayer' type='text'defaultValue={assignments.ClosingPrayer} onChange={this.handleChange} /></div>
                 </div>
                 <div class='col-12 p-4'>
-                    <button class='btn btn-primary btn-lg col-6' type='button'  onClick={this.handleSubmit} >UPDATE</button>    
+                    <button className='btn btn-primary btn-lg col-6' type='button'  onClick={this.handleSubmit} >UPDATE</button>    
                 </div>
             </form>
         );

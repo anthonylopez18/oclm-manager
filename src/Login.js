@@ -2,12 +2,12 @@ import { useState } from 'react';
 import React from 'react';
 import './Login.css';
 import { useNavigate } from "react-router-dom";
-import Schedule from './Schedule.js';
-
+import OclmSchedule from './OclmSchedule.js';
 
 function Login() {
     const navigate = useNavigate();
     const [inputs, setInputs] = useState({});
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -37,6 +37,7 @@ function Login() {
             (response) => {
                 console.log(response.status);
                 if(response.status == 200){
+                    setIsLoggedIn(true);
                     renderSchedule();
                 }
                 if(response.status== 401){
@@ -54,13 +55,15 @@ function Login() {
         );
     }
     const renderSchedule = ()=> {
-        console.log('navigate...');
-        navigate('/schedule');
+        console.log('oclm');
+        console.log('isLoggedin: ' + isLoggedIn);
+        
     }
 
   return (
     <>
-    <form className='login-form' onSubmit={handleSubmit}>
+    {!isLoggedIn ?
+        <form className='login-form' onSubmit={handleSubmit}>
         {/* <div className='form-group'>
             <input className='login-input form-control' type='text' value={inputs.username || ''} onChange={handleChange} id='username' name='username' placeholder='Username / Email' />
         </div> */}
@@ -73,8 +76,11 @@ function Login() {
                 <button className='login-button btn btn-secondary' id='btnRegister'>Register</button>
             </a> */}
         </div>
-    </form>
-
+        </form>
+        :
+        
+        <OclmSchedule weekAsDate={Date.now()} />
+    }
         </>
   );
 }

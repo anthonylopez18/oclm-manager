@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import UpdateSchedule from './UpdateSchedule.js';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
-import Login from './Login.js'
+import Login from './Login.js';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
